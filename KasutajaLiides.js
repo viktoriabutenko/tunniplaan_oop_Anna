@@ -1,4 +1,21 @@
 class KasutajaLiides {
+    printTund(tund, paev){
+        const tunniNumber = `.tund-${tund.tund}`;
+        const paevaNimetus = `.${paev}`;
+        const rida = document.querySelectorAll(tunniNumber);
+        for(let i = 0; i < rida.length; i++){
+            const veerg = rida[i].querySelector(paevaNimetus);
+            if(i % 2 == 0) {
+                veerg.classList.add('timetable-workout');
+                veerg.appendChild(document.createTextNode(`${tund.aine} - ${tund.grupp}`));
+            } else {
+                veerg.classList.add('timetable-workout');
+                veerg.appendChild(document.createTextNode(tund.ruum));
+            }
+        }
+    }
+
+
     print(tunniplaan){
         const nadalaAlgus = tunniplaan.nadal;
         const nadalaKuupaevad = Object.values(this.nadalaKuupaevad(tunniplaan));
@@ -13,8 +30,7 @@ class KasutajaLiides {
                     for(let t = 0; t < paevaTunnid.length; t++){
                         const tund = paevaTunnid[t];
                         const paev = nadalaPaevaNimetused[i];
-                        console.log(tund);
-                        console.log(paev);
+                        this.printTund(tund, paev);
                         console.log('------');
                     }
                 }
